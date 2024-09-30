@@ -1,0 +1,30 @@
+// styles.scss or app.scss
+.down-icon {
+  display: inline-block;
+  margin:auto;
+  border:1px solid red;
+  margin-top: 20px; // Adjust margin as needed
+}
+
+.typing-cursor {
+  border-right: 2px solid #fefae0; // Adjust cursor style as needed
+  animation: blink 1s step-end infinite;
+}
+
+.blinking {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fefae0; // Adjust cursor color as needed
+  }
+}
+
+.welcome-section {
+  text-align: center;
+  padding: 50px;
+}

@@ -1,0 +1,46 @@
+// WelcomeSection.scss
+
+.welcome-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Full viewport height
+  text-align: center;
+  padding: 20px;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem; // Increase font size as needed
+  margin-bottom: 1rem;
+  color: #fefae0; // Header color
+}
+
+.typing-cursor {
+  display: inline-block;
+  // border-right: 4px solid #fefae0; // Border color of cursor
+  animation: blink 0.7s steps(44) infinite; // Ensure this animation is set correctly
+}
+
+.blinking {
+  animation: blink 1s step-end infinite;
+}
+
+.down-icon {
+  margin-top: 40px; // Space between text and icon
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #fefae0; // Blinking cursor color
+  }
+}
