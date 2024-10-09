@@ -1,0 +1,49 @@
+// About.scss
+@import "../../styleVariables.scss";
+
+.about-section {
+  // padding: 4rem 2rem; // Add padding for better spacing
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 900px; // Set a max-width to keep content constrained
+    text-align: center;
+
+    @media screen and (min-width: 769px) {
+      flex-direction: row; // Switch to row layout for larger screens
+      text-align: left; // Align text to the left for better readability
+    }
+
+    .profile-image {
+      border-radius: $borderRadius; // Use a variable for consistent styling
+      margin-block:1rem;
+      max-width: 100%;
+      height: auto;
+      display: block;
+
+      @media screen and (min-width: 769px) {
+        margin: 0 2rem; // Add spacing between image and text for larger screens
+      }
+    }
+
+    .about-text {
+      font-size: 1.25rem; // Adjust font size for readability
+      line-height: 1.6;
+      max-width: 600px; // Limit the text width to improve readability
+      margin: 0;
+      margin-bottom:1rem;
+
+      @media screen and (min-width: 769px) {
+        margin-left: 1rem; // Add spacing between text and image
+      }
+    }
+  }
+}

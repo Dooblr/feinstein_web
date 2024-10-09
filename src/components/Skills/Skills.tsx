@@ -12,6 +12,7 @@ import { AiFillHtml5, AiFillGithub } from "react-icons/ai"
 import { DiSwift } from "react-icons/di"
 import { FaAndroid, FaWindows } from "react-icons/fa"
 import { SiMacos, SiNextdotjs, SiExpress } from "react-icons/si"
+import './Skills.scss'
 
 const SkillsSection: React.FC = () => {
   return (

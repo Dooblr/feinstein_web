@@ -1,21 +1,22 @@
-// WelcomeSection.tsx
-import React, { useEffect } from "react";
+import React, { useEffect, RefObject } from "react";
 import { motion } from "framer-motion";
-import { DownIcon } from "../assets/icons/DownIcon"; // Adjust path as needed
-import "./WelcomeSection.scss";
+import { DownIcon } from "../../assets/icons/DownIcon"; // Adjust path as needed
+import "./Welcome.scss";
 
-interface WelcomeSectionProps {
+interface WelcomeProps {
   typingHeader: string;
   isTypingComplete: boolean;
   setTypingHeader: React.Dispatch<React.SetStateAction<string>>;
   setIsTypingComplete: React.Dispatch<React.SetStateAction<boolean>>;
+  aboutSectionRef: RefObject<HTMLElement>; // New prop for the about section ref
 }
 
-const WelcomeSection: React.FC<WelcomeSectionProps> = ({
+const Welcome: React.FC<WelcomeProps> = ({
   typingHeader,
   isTypingComplete,
   setTypingHeader,
   setIsTypingComplete,
+  aboutSectionRef: firstSectionRef,
 }) => {
   const headerText = "Dan Feinstein";
 
@@ -43,21 +44,38 @@ const WelcomeSection: React.FC<WelcomeSectionProps> = ({
     typeLetter();
   }, [headerText, setTypingHeader, setIsTypingComplete]);
 
+  // Handle scroll to the About section
+  const handleScrollToFirstSection = () => {
+    if (firstSectionRef.current) {
+      firstSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="welcome-section">
       <div className="welcome-content">
-        <h1>
+        <h1 className="typing-header">
           {typingHeader}
-          <span className={isTypingComplete ? "typing-cursor blinking" : "typing-cursor"}></span>
+          <span
+            className={
+              isTypingComplete ? "typing-cursor blinking" : "typing-cursor"
+            }
+          ></span>
         </h1>
-        <motion.h2 initial={subheaderAnimation.initial} animate={subheaderAnimation.animate} transition={subheaderAnimation.transition}>
+        <motion.h2
+          initial={subheaderAnimation.initial}
+          animate={subheaderAnimation.animate}
+          transition={subheaderAnimation.transition}
+        >
           Web Developer
         </motion.h2>
-        {/* Display DownIcon */}
-        <DownIcon />
+        {/* DownIcon triggers the scroll when clicked */}
+        <div onClick={handleScrollToFirstSection}>
+          <DownIcon />
+        </div>
       </div>
     </section>
   );
 };
 
-export default WelcomeSection;
+export default Welcome;

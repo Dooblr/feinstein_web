@@ -1,0 +1,143 @@
+.project-page-template {
+  padding: 2rem 4rem;
+  color: white;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; // Add relative positioning to parent for absolute child positioning
+
+  .back-button {
+    position: absolute; // Set absolute positioning
+    top: 20px; // Adjust top spacing as needed
+    left: 20px; // Adjust left spacing as needed
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; // Space between icon and text
+
+    p {
+      font-size: 1.5rem; // Text size for "Back"
+      margin: 0;
+    }
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
+  .project-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #ffffff; // Set the project title to white
+  }
+
+  // Centered text for the project description
+  .project-description {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  // Container for stacked images
+  .image-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center images horizontally
+    gap: 1.5rem; // Spacing between stacked images
+    margin: 2rem 0;
+
+    .stacked-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      overflow: hidden;
+
+      .stacked-image {
+        max-width: 30rem;
+        height: auto;
+        object-fit: cover; // Adjust as necessary
+      }
+    }
+  }
+
+  // Styling for no images available message
+  .no-images {
+    text-align: center;
+    color: #ffcc00; // Set to a warning color
+    font-size: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  // Features and Technologies sections
+  .project-features,
+  .project-technologies {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    text-align: center;
+
+    h3 {
+      color: #ffffff;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style-type: none; // Remove default list styling
+      padding: 0;
+    }
+
+    li {
+      color: white; // Set list item text color to white
+      font-size: 1.2rem; // Increase font size for readability
+      line-height: 2rem; // Add spacing between list items
+      margin: 0.5rem 0; // Spacing around each list item
+      text-align: center; // Center text within list items
+    }
+  }
+
+  // Project link styles
+  .project-link {
+    margin: 2rem 0;
+    text-align: center;
+
+    a {
+      font-size: 1.2rem;
+      text-decoration: none;
+      background: #ffcc00;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      color: black;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #e0b300; // Darken on hover
+      }
+    }
+  }
+
+  // Styling for project not found message
+  .project-not-found {
+    text-align: center;
+    font-size: 2rem;
+    color: red;
+    margin-top: 4rem;
+  }
+};

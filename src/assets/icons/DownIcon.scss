@@ -1,30 +1,28 @@
-// styles.scss or app.scss
+// Welcome.scss
+
 .down-icon {
-  display: inline-block;
-  margin:auto;
-  border:1px solid red;
-  margin-top: 20px; // Adjust margin as needed
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  animation: bounce 2s infinite; // Optional bounce animation for visual appeal
+  cursor: pointer;
+  transition: transform 0.3s ease; // Smooth transition for hover effect
 
-.typing-cursor {
-  border-right: 2px solid #fefae0; // Adjust cursor style as needed
-  animation: blink 1s step-end infinite;
-}
-
-.blinking {
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #fefae0; // Adjust cursor color as needed
+  &:hover {
+    transform: translateY(-5px); // Slight lift effect on hover
   }
 }
 
-.welcome-section {
-  text-align: center;
-  padding: 50px;
+// Optional bounce animation if needed
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }

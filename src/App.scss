@@ -1,4 +1,4 @@
-@import 'styleVariables.scss';
+@import "styleVariables.scss";
 
 html,
 body {
@@ -9,75 +9,13 @@ body {
   ::-webkit-scrollbar {
     display: none;
   }
+  overflow-x: hidden;
   font-family: system-ui;
-}
-
-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 99vh;
-}
-
-// .welcome-section {
-//   @media screen and (max-width: 768px) {
-//     align-items: normal;
-//     justify-content: normal;
-//     margin-top: 40%;
-//   }
-// }
-
-h1 {
-  font-size: 8rem;
-  margin-block: 1.5rem;
-  color: $textColor;
-  font-weight: 700;
-  text-align: center;
-
-  @media screen and (max-width: 768px) {
-    font-size: 4rem;
-  }
-}
-h2 {
-  font-size: 8vw;
-  text-align: center;
-  font-weight: 100;
-  margin-block: 1.5rem;
-  color: $textColor;
-
-  @media screen and (max-width: 768px) {
-    font-size: 3rem;
-  }
-}
-h3 {
-  font-size: 3rem;
-  text-align: center;
-  font-weight: 500;
-  margin-block: 1.5rem;
-  color: $accentColor;
-}
-h4 {
-  font-size: 3rem;
-  text-align: center;
-  font-weight: 100;
-  margin-block: 1rem;
-  margin-bottom: 2rem;
-  color: $textColor;
-}
-
-p {
-  color: $textColor;
-  line-height: 2rem;
-}
-
-label {
-  color:$textColor;
-  font-size: 1.5rem;
+  color:white;
 }
 
 .flex {
-  display:flex;
+  display: flex;
 }
 
 .scroll-text {
@@ -85,180 +23,64 @@ label {
   font-size: 2rem;
 }
 
-.typing-cursor {
-  display: inline-block;
-  margin-left: 5px;
-  width: 2rem;
-  height: 1em;
-  background-color: rgb(255, 230, 0);
-  opacity: 0.8;
+h1,
+h2,
+h3,
+h4,
+p,
+label {
+  color: $textColor;
+}
+
+h1 {
+  font-size: 8rem;
+  margin-block: 1.5rem;
+  font-weight: 700;
+  text-align: center;
 
   @media screen and (max-width: 768px) {
-    width: 1rem;
-  }
-}
-.blinking {
-  animation: blink 1s step-start infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
+    font-size: 4rem;
   }
 }
 
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 67vw;
+h2 {
+  font-size: 8vw;
+  text-align: center;
+  font-weight: 100;
+  margin-block: 0;
 
   @media screen and (max-width: 768px) {
-    max-width: 90vw;
-  }
-
-  .skill-container {
-    display: flex;
-    flex-direction: column;
-    color: $textColor;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .skill-logo {
-    // background:blue;
-    width: 5rem;
-    height: 5rem;
-    color: white;
+    font-size: 3rem;
   }
 }
 
-.skill-link {
-  cursor: pointer;
-  user-select: none;
+h3 {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 500;
+  margin-block: 1.5rem;
 }
 
-.skills-section {
-  position: relative;
-
-  .modal {
-    position: absolute;
-    top: 25%;
-    // background:$textColor;
-    min-width: 50vw;
-    min-height: 50vh;
-    border-radius: $borderRadius;
-    z-index: 100;
-    border: 5px solid $textColor;
-  }
+h4 {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: 100;
+  margin-block: 1rem;
+  margin-bottom: 2rem;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  backdrop-filter: blur(5px);
-  z-index: 10; /* Ensure it's above other content but below the modal */
+p {
+  line-height: 2rem;
 }
 
-.about-section {
-  .profile-image {
-    border-radius: $borderRadius;
-    // display: block;
-    // margin: auto;
-    @media screen and (max-width: 768px) {
-      display: block;
-      margin: auto;
-    }
-  }
-  p {
-    font-size: 1.5rem;
-    max-width: 50vw;
-
-    @media screen and (max-width: 768px) {
-      max-width: 90vw;
-    }
-  }
+label {
+  font-size: 1.5rem;
 }
 
-.projects-section {
-  .projects-grid {
-    display: grid;
-    grid-gap: 20px; // Adjust the gap between items as needed
-
-    // For screens below 768px
-    grid-template-columns: repeat(1, 1fr);
-
-    // For screens between 768px and 1200px
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    // For screens above 1200px
-    @media (min-width: 1200px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .projects-item {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 300px;
-    height: 200px;
-    // border: 1px solid $textColor;
-    border-radius: $borderRadius;
-    transition: 200ms;
-    cursor: pointer;
-    overflow: hidden;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-    &:active {
-      transform: scale(0.9);
-    }
-  }
-
-  .project-image {
-    width: 100%;
-    aspect-ratio: 1/1;
-    z-index: 1;
-    position: absolute;
-    border-radius: $borderRadius;
-  }
-
-  .project-label-spacer {
-    flex-grow: 2;
-  }
-
-  p {
-    background: rgba(0, 0, 0, 0.75);
-    padding: 0.75rem;
-    margin: 0;
-    height: 30px;
-    justify-self: flex-end;
-    border-bottom-left-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
-    z-index: 2;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  #bahp-image {
-    width: 67%;
-    padding: 8rem;
-    transform: translate(-16%, -40.5%);
-    background: $textColor;
-  }
-  .project-icon {
-    background: $textColor;
-    height: 80%;
-    padding:2rem;
-    transform: translate(-10%, -8%);
-  }
+.section-line {
+  width:67vw;
+  height:1px;
+  border-bottom: 1px solid white;
+  margin:auto;
+  margin-block:1rem;
 }
