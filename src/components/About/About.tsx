@@ -1,6 +1,6 @@
 import React from "react"
 import { useWindowSize } from "@uidotdev/usehooks"
-import profileImage from "../../assets/images/profile.jpeg" // Adjust path as needed
+import profileImage from "../../assets/images/headshot.webp" // Adjust path as needed
 import "./About.scss"
 
 const About: React.FC = () => {

@@ -9,9 +9,7 @@
   position: relative; // Add relative positioning to parent for absolute child positioning
 
   .back-button {
-    position: absolute; // Set absolute positioning
-    top: 20px; // Adjust top spacing as needed
-    left: 20px; // Adjust left spacing as needed
+    margin-bottom:1rem;
     background: transparent;
     border: none;
     color: white;
@@ -19,7 +17,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem; // Space between icon and text
+    gap: 0.5rem;
 
     p {
       font-size: 1.5rem; // Text size for "Back"
@@ -67,7 +65,8 @@
       overflow: hidden;
 
       .stacked-image {
-        max-width: 30rem;
+        width:30rem;
+        max-width: 90vw;
         height: auto;
         object-fit: cover; // Adjust as necessary
       }

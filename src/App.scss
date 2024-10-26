@@ -11,7 +11,8 @@ body {
   }
   overflow-x: hidden;
   font-family: system-ui;
-  color:white;
+  color: white;
+  scroll-behavior: smooth;
 }
 
 .flex {
@@ -78,9 +79,11 @@ label {
 }
 
 .section-line {
-  width:67vw;
-  height:1px;
+  width: 50vw;
+  max-width:30rem;
+  opacity: 0.5;
+  height: 1px;
   border-bottom: 1px solid white;
-  margin:auto;
-  margin-block:1rem;
+  margin: auto;
+  margin-block: 2rem;
 }

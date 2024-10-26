@@ -25,7 +25,7 @@ const projectsData: ProjectData[] = [
     id: "ursabase",
     title: "Ursabase",
     description:
-      "Ursabase is an innovative lawn care management application that assists users in maintaining and managing their lawn care activities.",
+      "Ursabase is a form management system that assists technicians with diagnosing landscaping equipment and providing ordering requirements to the parts manager.",
     images: [ursabaseImage1, ursabaseImage2],
     features: ["Authentication", "Complex forms", "Database storage"],
     technologies: ["React", "TypeScript", "Node.js", "Vite"],
@@ -34,7 +34,7 @@ const projectsData: ProjectData[] = [
     id: "bahp",
     title: "Bay Area Health Psychology",
     description:
-      "The Bay Area Health Psychology Document Manager helps professionals manage documents and client files effectively.",
+      "The Bay Area Health Psychology Document Manager helps professionals manage client documents and files effectively.",
     images: [bahpImage1, bahpImage2, bahpImage3],
     features: [
       "Document management",
