@@ -1,10 +1,11 @@
 // About.scss
+@use "sass:color";
 @import "../../styleVariables.scss";
 @import "../../styles/mixins.scss";
 
 .about-section {
-  @include section-container;
   background: $backgroundColor;
+  @include section-container;
 
   h2 {
     @include section-header;
@@ -70,7 +71,7 @@
       p {
         font-size: 1.1rem;
         line-height: 1.7;
-        color: lighten($textColor, 5%);
+        color: color.adjust($textColor, $lightness: 5%);
         margin-bottom: 1.5rem;
 
         &:last-child {

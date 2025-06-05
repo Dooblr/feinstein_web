@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "../../styleVariables.scss";
 @import "../../styles/mixins.scss";
 
@@ -53,7 +54,7 @@
     }
 
     .portfolio-item-title {
-      color: lighten($accentColor, 10%);
+      color: color.adjust($accentColor, $lightness: 10%);
     }
   }
 
@@ -146,7 +147,7 @@
 // Description styling
 .portfolio-item-description {
   font-size: 1rem;
-  color: lighten($textColor, 10%);
+  color: color.adjust($textColor, $lightness: 10%);
   margin: 0;
   line-height: 1.5;
   opacity: 0.9;
@@ -160,7 +161,7 @@
 .projects-footer {
   text-align: center;
   font-size: 1.1rem;
-  color: lighten($textColor, 10%);
+  color: color.adjust($textColor, $lightness: 10%);
   font-style: italic;
   opacity: 0.8;
   

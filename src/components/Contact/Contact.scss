@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "../../styleVariables.scss";
 @import "../../styles/mixins.scss";
 
@@ -21,7 +22,7 @@
 
   .contact-subheader {
     font-size: 1.2rem;
-    color: lighten($textColor, 10%);
+    color: color.adjust($textColor, $lightness: 10%);
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.5;
@@ -88,7 +89,7 @@
 
       .contact-label {
         font-size: 0.9rem;
-        color: lighten($textColor, 20%);
+        color: color.adjust($textColor, $lightness: 20%);
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -102,7 +103,7 @@
         transition: all 0.3s ease;
 
         &:hover {
-          color: lighten($accentColor, 10%);
+          color: color.adjust($accentColor, $lightness: 10%);
           transform: translateX(2px);
         }
 
@@ -206,7 +207,7 @@
 #submit-button {
   width: 100%;
   border-radius: $borderRadius;
-  background: linear-gradient(135deg, darken($accentColor, 15%), darken($accentColor, 5%));
+  background: linear-gradient(135deg, color.adjust($accentColor, $lightness: -15%), color.adjust($accentColor, $lightness: -5%));
   font-weight: 600;
   font-size: 1.1rem;
   padding: 1rem 2rem;
@@ -218,7 +219,7 @@
   box-shadow: 0 4px 12px rgba(52, 107, 134, 0.4);
 
   &:hover:not(:disabled) {
-    background: linear-gradient(135deg, darken($accentColor, 10%), $accentColor);
+    background: linear-gradient(135deg, color.adjust($accentColor, $lightness: -10%), $accentColor);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 107, 134, 0.5);
   }
@@ -235,7 +236,7 @@
   }
 
   &:focus {
-    outline: 2px solid lighten($accentColor, 20%);
+    outline: 2px solid color.adjust($accentColor, $lightness: 20%);
     outline-offset: 4px;
   }
 }
