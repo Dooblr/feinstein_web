@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaPaw } from "react-icons/fa";
+import { FaPaw, FaExternalLinkAlt, FaCameraRetro } from "react-icons/fa";
 import { TbVinyl } from "react-icons/tb";
-import projectsData from "../../data/projectsData"; // Import the actual projectsData
+import { motion } from "framer-motion";
+import { fadeInContainer, fadeInItem, scaleOnHover, scaleOnTap } from "../../utils/animations";
+import projectsData from "../../data/projectsData";
 import "./Portfolio.scss";
 import bahpLogo from "../../assets/images/bahp/0.svg";
 import rbgLogo from '../../assets/images/rbgmowing/favicon.png'
 import huckleberryLogo from '../../assets/images/huckleberryconnect/icon.png'
-import { FaCameraRetro } from "react-icons/fa";
 import babbageLogo from '../../assets/images/babbage_logo.svg'
 
-// Map project IDs to specific icons if needed
+// Map project IDs to specific icons
 const projectIcons: { [key: string]: JSX.Element } = {
-  ursabase: <FaPaw className="project-image project-icon" color="rgb(16, 191, 174)" />,
-  bahp: <img src={bahpLogo} alt="BAHP Logo" className="project-image project-icon" />,
-  rbgmowing: <img src={rbgLogo} alt="RBG Mowing" className="project-image project-icon" />,
-  mymalarkeymedia: <FaCameraRetro className="project-image project-icon" color="black" />,
-  huckleberryconnect: <img src={huckleberryLogo} alt="Huckleberry Connect" className="project-image project-icon" />,
-  babbageconnect: <img src={babbageLogo} alt="Babbage Connect" className="project-image project-icon" />,
+  ursabase: <FaPaw className="project-icon" color="rgb(16, 191, 174)" />,
+  bahp: <img src={bahpLogo} alt="BAHP Logo" className="project-icon" />,
+  rbgmowing: <img src={rbgLogo} alt="RBG Mowing" className="project-icon" />,
+  mymalarkeymedia: <FaCameraRetro className="project-icon" color="black" />,
+  huckleberryconnect: <img src={huckleberryLogo} alt="Huckleberry Connect" className="project-icon" />,
+  babbageconnect: <img src={babbageLogo} alt="Babbage Connect" className="project-icon" />,
 };
 
 // Default icon if project ID doesn't have a specific icon
-const defaultIcon = <TbVinyl className="project-image project-icon" color="gray" />;
+const defaultIcon = <TbVinyl className="project-icon" color="gray" />;
 
 // Utility function to get the project icon
 const getProjectIcon = (projectId: string): JSX.Element => {
@@ -29,48 +30,70 @@ const getProjectIcon = (projectId: string): JSX.Element => {
 };
 
 const Portfolio: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="portfolio-section">
       <h2>Portfolio</h2>
-      <div className="portfolio-grid">
+      <motion.div 
+        className="portfolio-list"
+        variants={fadeInContainer}
+        initial="hidden"
+        animate={isLoaded ? "visible" : "hidden"}
+      >
         {projectsData.map((project) => {
-          const { id, title, link } = project;
+          const { id, title, link, description } = project;
           
-          // Determine if the project should be an internal or external link
-          const linkComponent = link ? (
-            // Render an <a> tag for external URLs
+          const itemContent = (
+            <motion.div
+              className="portfolio-item"
+              variants={fadeInItem}
+              whileHover={scaleOnHover}
+              whileTap={scaleOnTap}
+            >
+              <div className="portfolio-item-icon">
+                {getProjectIcon(id)}
+              </div>
+              <div className="portfolio-item-content">
+                <h3 className="portfolio-item-title">
+                  {title}
+                  {link && <FaExternalLinkAlt className="external-link-icon" />}
+                </h3>
+                {description && (
+                  <p className="portfolio-item-description">{description}</p>
+                )}
+              </div>
+            </motion.div>
+          );
+
+          return link ? (
             <a
               key={id}
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="projects-item"
+              className="portfolio-link"
+              aria-label={`Visit ${title} - opens in new tab`}
             >
-              <div className="project-image-container">
-                {/* Render the project icon (or default icon) */}
-                {getProjectIcon(id)}
-              </div>
-              <div className="project-content">
-                <p>{title}</p>
-              </div>
+              {itemContent}
             </a>
           ) : (
-            // Render a <Link> component for internal URLs
-            <Link key={id} to={`/portfolio/${id}`} className="projects-item">
-              <div className="project-image-container">
-                {/* Render the project icon (or default icon) */}
-                {getProjectIcon(id)}
-              </div>
-              <div className="project-content">
-                <p>{title}</p>
-              </div>
+            <Link
+              key={id}
+              to={`/portfolio/${id}`}
+              className="portfolio-link"
+              aria-label={`View ${title} project details`}
+            >
+              {itemContent}
             </Link>
           );
-
-          return linkComponent;
         })}
-      </div>
-      <div className="projects-footer">More projects available upon request.</div>
+      </motion.div>
     </section>
   );
 };

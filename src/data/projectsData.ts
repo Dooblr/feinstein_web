@@ -1,22 +1,22 @@
 // src/data/projectsData.ts
 
 export interface ProjectData {
-  id: string
-  title: string
-  description?: string
-  images?: string[]
-  features?: string[]
-  technologies?: string[]
-  link?: string
+  id: string;
+  title: string;
+  description?: string;
+  images?: string[];
+  features?: string[];
+  technologies?: string[];
+  link?: string;
 }
 
 // Import images using ES6 `import` syntax
-import bahpImage1 from "../assets/images/bahp/1.png"
-import bahpImage2 from "../assets/images/bahp/2.png"
-import bahpImage3 from "../assets/images/bahp/3.png"
+import bahpImage1 from "../assets/images/bahp/1.png";
+import bahpImage2 from "../assets/images/bahp/2.png";
+import bahpImage3 from "../assets/images/bahp/3.png";
 
-import ursabaseImage1 from "../assets/images/ursabase/1.png"
-import ursabaseImage2 from "../assets/images/ursabase/2.png"
+import ursabaseImage1 from "../assets/images/ursabase/1.png";
+import ursabaseImage2 from "../assets/images/ursabase/2.png";
 
 // src/data/projectsData.ts
 
@@ -46,23 +46,24 @@ const projectsData: ProjectData[] = [
   {
     id: "babbageconnect",
     title: "Babbage Connect",
-    link: "https://babbageconnect.com", // External link for navigation
+    description:
+      "Babbage Connect is a platform that allows MetaNet investors and developers to connect and fund projects.",
+    link: "https://babbageconnect.com",
   },
   {
     id: "rbgmowing",
     title: "RBG Mowing",
-    link: "https://rbgmowing.com", // External link for navigation
+    description:
+      "RBG Mowing is a landscaping company that provides mowing services to the Ramona area of San Diego.",
+    link: "https://rbgmowing.com",
   },
   {
-    id: "mymalarkeymedia",
-    title: "My Malarkey Media",
-    link: "https://mymalarkeymedia.com", // External link for navigation
+    id: "iconoblast",
+    title: "Iconoblast",
+    description:
+      "Iconoblast is a cross-platform game made with React that won Honorable Mention at the 2024 React Game Jam.",
+    link: "https://iconoblast.spring-2024.reactjam.com/",
   },
-  {
-    id: "huckleberryconnect",
-    title: "Huckleberry Connect",
-    link: "https://huckleberryconnect.com", // External link for navigation
-  },
-]
+];
 
-export default projectsData
+export default projectsData;

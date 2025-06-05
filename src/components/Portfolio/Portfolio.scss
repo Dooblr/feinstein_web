@@ -1,106 +1,198 @@
-@import "../../styleVariables.scss"; // Import global style variables
+@import "../../styleVariables.scss";
+@import "../../styles/mixins.scss";
 
 // Base styles for the Portfolio section
 .portfolio-section {
-  padding: 2rem 4rem;
+  @include section-container;
 
   h2 {
-    margin-bottom: 2rem;
-    text-align: center;
+    @include section-header;
   }
 }
 
-// Portfolio grid styling
-.portfolio-grid {
-  display: grid;
+// Portfolio list styling
+.portfolio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+// Portfolio link wrapper
+.portfolio-link {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+  
+  &:focus {
+    outline: 2px solid $accentColor;
+    outline-offset: 4px;
+    border-radius: $borderRadius;
+  }
+}
+
+// Individual portfolio items
+.portfolio-item {
+  display: flex;
+  align-items: center;
   gap: 2rem;
-  justify-content: center;
-  max-width:80rem;
-  margin: auto;
+  @include card-container;
+  @include hover-border-glow;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
 
-  // 3 columns on large screens
-  grid-template-columns: repeat(3, 1fr);
+  &:hover {
+    background: linear-gradient(135deg, 
+      rgba(134, 187, 216, 0.15), 
+      rgba(134, 187, 216, 0.08));
+    border-color: rgba(134, 187, 216, 0.4);
+    box-shadow: 0 8px 25px rgba(134, 187, 216, 0.15);
 
-  // Responsive design for medium and small screens
-  @media screen and (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
+    .portfolio-item-icon .project-icon {
+      transform: scale(1.1);
+    }
+
+    .portfolio-item-title {
+      color: lighten($accentColor, 10%);
+    }
   }
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
   }
 }
 
-// Individual project items
-.projects-item {
+// Icon container
+.portfolio-item-icon {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  background: #f5f5f5;
+  justify-content: center;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
   border-radius: $borderRadius;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
-  overflow: hidden;
-  height: 100%; // Ensure uniform height
-  max-width: 100%; // Avoid overflow
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  .project-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
+    // For React Icons (SVGs)
+    &:not(img) {
+      font-size: 50px;
+    }
   }
 
-  .project-image-container {
-    width: 100%;
-    height: 15rem;
-    overflow: hidden;
-    border-top-left-radius: $borderRadius;
-    border-top-right-radius: $borderRadius;
-
-    .project-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-
-      &.project-icon {
-        width: auto;
-        height: 50%;
-        display: block;
-        margin: 0 auto;
-        transform: translate(0%, 50%);
+  @media screen and (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+    
+    .project-icon {
+      width: 40px;
+      height: 40px;
+      
+      &:not(img) {
+        font-size: 40px;
       }
     }
   }
+}
 
-  .project-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; // Center the text vertically
-    align-items: center; // Center the text horizontally
-    width: 100%; // Take up full width
+// Content area
+.portfolio-item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 
-    // Styling for the project title
-    p {
-      margin: 0;
-      padding: 1rem;
-      text-align: center;
-      color: white;
-      font-size: 1.2rem;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      border-bottom-left-radius: $borderRadius;
-      border-bottom-right-radius: $borderRadius;
-      position: relative;
-      z-index: 2;
-      height: auto; // Ensure height adjusts to content
-      line-height: 1.5; // Improved readability with a good line-height
-    }
+// Title styling
+.portfolio-item-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $textColor;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+  line-height: 1.3;
+
+  .external-link-icon {
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  &:hover .external-link-icon {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1.3rem;
+    justify-content: center;
   }
 }
 
-// Additional styling for footer
+// Description styling
+.portfolio-item-description {
+  font-size: 1rem;
+  color: lighten($textColor, 10%);
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.9;
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+}
+
+// Footer styling
 .projects-footer {
   text-align: center;
   font-size: 1.1rem;
-  margin-top: 2rem;
+  color: lighten($textColor, 10%);
+  font-style: italic;
+  opacity: 0.8;
+  
+  &::before {
+    content: '✦';
+    margin-right: 10px;
+    color: $accentColor;
+  }
+  
+  &::after {
+    content: '✦';
+    margin-left: 10px;
+    color: $accentColor;
+  }
+}
+
+// Dark theme adjustments
+@media (prefers-color-scheme: dark) {
+  .portfolio-item {
+    background: linear-gradient(135deg, 
+      rgba(134, 187, 216, 0.08), 
+      rgba(134, 187, 216, 0.03));
+    
+    &:hover {
+      background: linear-gradient(135deg, 
+        rgba(134, 187, 216, 0.12), 
+        rgba(134, 187, 216, 0.06));
+    }
+  }
+
+  .portfolio-item-icon {
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
 }

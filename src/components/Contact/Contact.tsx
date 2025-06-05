@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 import "./Contact.scss"
 import toast, { Toaster } from "react-hot-toast"
+import { FaPhone, FaEnvelope, FaUser, FaProjectDiagram } from "react-icons/fa"
+import { motion } from "framer-motion"
+import { fadeInContainer, fadeInItem } from "../../utils/animations"
 
 const Contact: React.FC = () => {
   const [status, setStatus] = useState<
@@ -56,68 +59,95 @@ const Contact: React.FC = () => {
   }
 
   return (
-    <section>
+    <section className="contact-section">
       <Toaster position="top-center" reverseOrder={false} />
 
       <h2>Contact</h2>
-      <h3 className="contact-subheader">
-        For a free quote, please call, email, or use the form below
-      </h3>
-      {/* Phone link with "tel:" protocol */}
-      <a className="contact-link" href="tel:+18587741024">
-        (858) 774-1024
-      </a>
-      {/* Email link with "mailto:" protocol */}
-      <a className="contact-link" href="mailto:DanielRonFeinstein@gmail.com">
-        DanielRonFeinstein@gmail.com
-      </a>
-      <form
-        onSubmit={submitContactForm}
-        id="contact-form"
-        style={{ maxWidth: "90vw" }}
+      
+      <motion.div 
+        className="contact-content"
+        variants={fadeInContainer}
+        initial="hidden"
+        animate="visible"
       >
-        <div className="field-container">
-          <label htmlFor="name">Name</label>
-          <input id="name" name="name" required />
-        </div>
-        <div className="field-container">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="janedoe@gmail.com"
-          />
-        </div>
-        <div className="field-container">
-          <label htmlFor="phone">Phone</label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            required
-            placeholder="(123) 456 - 7890"
-          />
-        </div>
-        <div className="field-container">
-          <label htmlFor="description">Project description</label>
-          <textarea id="description" name="description" />
-        </div>
+        <div className="contact-main">
+          <motion.div 
+            className="contact-info"
+            variants={fadeInItem}
+          >
+            <div className="contact-methods">
+              <div className="contact-method">
+                <FaPhone className="contact-icon" />
+                <div className="contact-details">
+                  <span className="contact-label">Phone</span>
+                  <a className="contact-link" href="tel:+18587741024">
+                    (858) 774-1024
+                  </a>
+                </div>
+              </div>
+              <div className="contact-method">
+                <FaEnvelope className="contact-icon" />
+                <div className="contact-details">
+                  <span className="contact-label">Email</span>
+                  <a className="contact-link" href="mailto:DanielRonFeinstein@gmail.com">
+                    DanielRonFeinstein@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
-        {/* Submit button with loading spinner */}
-        <button
-          type="submit"
-          id="submit-button"
-          disabled={status === "submitting"}
-        >
-          {status === "submitting" ? (
-            <div className="spinner"></div> // Spinner element
-          ) : (
-            "Submit"
-          )}
-        </button>
-      </form>
+          <motion.form
+            onSubmit={submitContactForm}
+            id="contact-form"
+            variants={fadeInItem}
+          >
+            <div className="form-header">
+              <h4>Send a Message</h4>
+            </div>
+            <div className="form-grid">
+              <div className="field-container">
+                <label htmlFor="name">
+                  <FaUser className="field-icon" />
+                  Name
+                </label>
+                <input id="name" name="name" required />
+              </div>
+              <div className="field-container">
+                <label htmlFor="email">
+                  <FaEnvelope className="field-icon" />
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                />
+              </div>
+              <div className="field-container field-full">
+                <label htmlFor="description">
+                  <FaProjectDiagram className="field-icon" />
+                  Message
+                </label>
+                <textarea id="description" name="description" rows={4} />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="submit-button"
+              disabled={status === "submitting"}
+            >
+              {status === "submitting" ? (
+                <div className="spinner"></div>
+              ) : (
+                "Submit"
+              )}
+            </button>
+          </motion.form>
+        </div>
+      </motion.div>
     </section>
   )
 }

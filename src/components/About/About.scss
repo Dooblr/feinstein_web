@@ -1,48 +1,106 @@
 // About.scss
 @import "../../styleVariables.scss";
+@import "../../styles/mixins.scss";
 
 .about-section {
-  // padding: 4rem 2rem; // Add padding for better spacing
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  @include section-container;
+  background: $backgroundColor;
+
+  h2 {
+    @include section-header;
+  }
 
   .about-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 900px; // Set a max-width to keep content constrained
+    max-width: 1000px;
+    margin: 0 auto;
     text-align: center;
+    @include card-container;
+    padding: 3rem 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 
     @media screen and (min-width: 769px) {
-      flex-direction: row; // Switch to row layout for larger screens
-      text-align: left; // Align text to the left for better readability
+      flex-direction: row;
+      text-align: left;
+      gap: 3rem;
+      padding: 4rem 3rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 2rem 1.5rem;
     }
 
     .profile-image {
-      border-radius: $borderRadius; // Use a variable for consistent styling
-      margin-block:1rem;
+      border-radius: $borderRadius * 2;
+      margin-bottom: 2rem;
       max-width: 100%;
       height: auto;
       display: block;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      border: 3px solid rgba(134, 187, 216, 0.2);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        border-color: rgba(134, 187, 216, 0.4);
+      }
 
       @media screen and (min-width: 769px) {
-        margin: 0 2rem; // Add spacing between image and text for larger screens
+        margin-bottom: 0;
+        flex-shrink: 0;
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      @media screen and (max-width: 768px) {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
       }
     }
 
     .about-text {
-      font-size: 1.25rem; // Adjust font size for readability
-      line-height: 1.6;
-      max-width: 600px; // Limit the text width to improve readability
-      margin: 0;
-      margin-bottom:1rem;
+      flex: 1;
 
-      @media screen and (min-width: 769px) {
-        margin-left: 1rem; // Add spacing between text and image
+      p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: lighten($textColor, 5%);
+        margin-bottom: 1.5rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        @media screen and (min-width: 769px) {
+          font-size: 1.2rem;
+          line-height: 1.8;
+        }
+      }
+    }
+  }
+}
+
+// Dark theme adjustments
+@media (prefers-color-scheme: dark) {
+  .about-section {
+    .about-content {
+      background: linear-gradient(135deg, 
+        rgba(134, 187, 216, 0.03), 
+        rgba(134, 187, 216, 0.01));
+      border-color: rgba(134, 187, 216, 0.15);
+    }
+
+    .profile-image {
+      border-color: rgba(134, 187, 216, 0.3);
+      
+      &:hover {
+        border-color: rgba(134, 187, 216, 0.5);
       }
     }
   }

@@ -16,7 +16,7 @@ import './Skills.scss'
 
 const SkillsSection: React.FC = () => {
   return (
-    <section>
+    <section className="skills-section">
       <h2>Skills</h2>
       <div className="skills">
         <div className="skill-container">

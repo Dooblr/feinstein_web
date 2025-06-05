@@ -1,12 +1,21 @@
 // Skills.scss
 @import '../../styleVariables.scss';
+@import '../../styles/mixins.scss';
+
+.skills-section {
+  @include section-container;
+
+  h2 {
+    @include section-header;
+  }
+}
 
 .skills {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 50rem;
-  margin:auto;
+  margin: auto;
 
   @media screen and (max-width: 768px) {
     max-width: 90vw;
@@ -32,18 +41,14 @@
   user-select: none;
 }
 
-.skills-section {
-  position: relative;
-
-  .modal {
-    position: absolute;
-    top: 25%;
-    min-width: 50vw;
-    min-height: 50vh;
-    border-radius: $borderRadius;
-    z-index: 100;
-    border: 5px solid $textColor;
-  }
+.modal {
+  position: absolute;
+  top: 25%;
+  min-width: 50vw;
+  min-height: 50vh;
+  border-radius: $borderRadius;
+  z-index: 100;
+  border: 5px solid $textColor;
 }
 
 .modal-overlay {
